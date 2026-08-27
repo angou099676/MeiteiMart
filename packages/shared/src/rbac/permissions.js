@@ -1,0 +1,171 @@
+// Data-driven RBAC still needs a canonical, versioned catalogue of roles & permissions
+// so seed scripts, backend guards, and frontend UIs all agree on the same strings.
+
+export const ROLES = Object.freeze({
+  SUPER_ADMIN: "SUPER_ADMIN",
+  ADMIN: "ADMIN",
+  SELLER: "SELLER",
+  DELIVERY_PARTNER: "DELIVERY_PARTNER",
+  CUSTOMER: "CUSTOMER",
+  SUPPORT_AGENT: "SUPPORT_AGENT",
+  SUPPORT_ADMIN: "SUPPORT_ADMIN",
+});
+
+export const PERMISSIONS = Object.freeze({
+  // Platform / RBAC management (Super Admin only by default)
+  ROLE_MANAGE: "role:manage",
+  PERMISSION_MANAGE: "permission:manage",
+  ADMIN_MANAGE: "admin:manage",
+  SETTINGS_MANAGE: "settings:manage",
+
+  // Catalog
+  CATEGORY_CREATE: "category:create",
+  CATEGORY_READ: "category:read",
+  CATEGORY_UPDATE: "category:update",
+  CATEGORY_DELETE: "category:delete",
+  PRODUCT_CREATE: "product:create",
+  PRODUCT_READ: "product:read",
+  PRODUCT_UPDATE: "product:update",
+  PRODUCT_DELETE: "product:delete",
+  PRODUCT_APPROVE: "product:approve",
+
+  // Inventory / store (seller scoped)
+  INVENTORY_MANAGE: "inventory:manage",
+  STORE_MANAGE: "store:manage",
+  STORE_APPROVE: "store:approve",
+
+  // Orders
+  ORDER_CREATE: "order:create",
+  ORDER_READ_OWN: "order:read:own",
+  ORDER_READ_ANY: "order:read:any",
+  ORDER_UPDATE_STATUS: "order:update:status",
+  ORDER_CANCEL: "order:cancel",
+  ORDER_ASSIGN_DELIVERY: "order:assign:delivery",
+  ORDER_RATE: "order:rate",
+
+  // Delivery
+  DELIVERY_ACCEPT: "delivery:accept",
+  DELIVERY_UPDATE_STATUS: "delivery:update:status",
+  DELIVERY_TRACK_SELF: "delivery:track:self",
+  DELIVERY_TRACK_ANY: "delivery:track:any",
+  DELIVERY_PARTNER_MANAGE: "delivery-partner:manage",
+  DELIVERY_CLAIM: "delivery:claim",
+
+  // Payouts / finance
+  PAYOUT_REQUEST: "payout:request",
+  PAYOUT_APPROVE: "payout:approve",
+  REPORT_VIEW: "report:view",
+
+  // Support
+  TICKET_CREATE: "ticket:create",
+  TICKET_READ_OWN: "ticket:read:own",
+  TICKET_READ_ANY: "ticket:read:any",
+  TICKET_RESPOND: "ticket:respond",
+  TICKET_ASSIGN: "ticket:assign",
+  TICKET_CLOSE: "ticket:close",
+  SUPPORT_AGENT_MANAGE: "support-agent:manage",
+
+  // Users
+  USER_MANAGE: "user:manage",
+  PROFILE_READ_OWN: "profile:read:own",
+  PROFILE_UPDATE_OWN: "profile:update:own",
+});
+
+// Default permission sets granted to each seeded role. Stored as data (Role docs) so
+// this is only the *seed* — actual source of truth after seeding is the database.
+export const DEFAULT_ROLE_PERMISSIONS = Object.freeze({
+  [ROLES.SUPER_ADMIN]: Object.values(PERMISSIONS),
+  [ROLES.ADMIN]: [
+    PERMISSIONS.CATEGORY_CREATE,
+    PERMISSIONS.CATEGORY_READ,
+    PERMISSIONS.CATEGORY_UPDATE,
+    PERMISSIONS.CATEGORY_DELETE,
+    PERMISSIONS.PRODUCT_READ,
+    PERMISSIONS.PRODUCT_APPROVE,
+    PERMISSIONS.PRODUCT_UPDATE,
+    PERMISSIONS.PRODUCT_DELETE,
+    PERMISSIONS.ORDER_READ_ANY,
+    PERMISSIONS.ORDER_UPDATE_STATUS,
+    PERMISSIONS.ORDER_CANCEL,
+    PERMISSIONS.ORDER_ASSIGN_DELIVERY,
+    PERMISSIONS.DELIVERY_TRACK_ANY,
+    PERMISSIONS.DELIVERY_PARTNER_MANAGE,
+    PERMISSIONS.STORE_APPROVE,
+    PERMISSIONS.PAYOUT_APPROVE,
+    PERMISSIONS.REPORT_VIEW,
+    PERMISSIONS.TICKET_READ_ANY,
+    PERMISSIONS.TICKET_ASSIGN,
+    PERMISSIONS.SUPPORT_AGENT_MANAGE,
+    PERMISSIONS.USER_MANAGE,
+    PERMISSIONS.PROFILE_READ_OWN,
+    PERMISSIONS.PROFILE_UPDATE_OWN,
+  ],
+  [ROLES.SELLER]: [
+    PERMISSIONS.PRODUCT_CREATE,
+    PERMISSIONS.PRODUCT_READ,
+    PERMISSIONS.PRODUCT_UPDATE,
+    PERMISSIONS.PRODUCT_DELETE,
+    PERMISSIONS.INVENTORY_MANAGE,
+    PERMISSIONS.STORE_MANAGE,
+    PERMISSIONS.ORDER_READ_OWN,
+    PERMISSIONS.ORDER_UPDATE_STATUS,
+    PERMISSIONS.PAYOUT_REQUEST,
+    PERMISSIONS.REPORT_VIEW,
+    PERMISSIONS.TICKET_CREATE,
+    PERMISSIONS.PROFILE_READ_OWN,
+    PERMISSIONS.PROFILE_UPDATE_OWN,
+  ],
+  [ROLES.DELIVERY_PARTNER]: [
+    PERMISSIONS.DELIVERY_ACCEPT,
+    PERMISSIONS.DELIVERY_UPDATE_STATUS,
+    PERMISSIONS.DELIVERY_TRACK_SELF,
+    PERMISSIONS.DELIVERY_CLAIM,
+    PERMISSIONS.ORDER_READ_OWN,
+    PERMISSIONS.PAYOUT_REQUEST,
+    PERMISSIONS.TICKET_CREATE,
+    PERMISSIONS.PROFILE_READ_OWN,
+    PERMISSIONS.PROFILE_UPDATE_OWN,
+  ],
+  [ROLES.CUSTOMER]: [
+    PERMISSIONS.PRODUCT_READ,
+    PERMISSIONS.CATEGORY_READ,
+    PERMISSIONS.ORDER_CREATE,
+    PERMISSIONS.ORDER_READ_OWN,
+    PERMISSIONS.ORDER_CANCEL,
+    PERMISSIONS.ORDER_RATE,
+    PERMISSIONS.DELIVERY_TRACK_SELF,
+    PERMISSIONS.TICKET_CREATE,
+    PERMISSIONS.TICKET_READ_OWN,
+    PERMISSIONS.PROFILE_READ_OWN,
+    PERMISSIONS.PROFILE_UPDATE_OWN,
+  ],
+  [ROLES.SUPPORT_AGENT]: [
+    PERMISSIONS.TICKET_READ_ANY,
+    PERMISSIONS.TICKET_RESPOND,
+    PERMISSIONS.TICKET_CLOSE,
+    PERMISSIONS.ORDER_READ_ANY,
+    PERMISSIONS.PROFILE_READ_OWN,
+    PERMISSIONS.PROFILE_UPDATE_OWN,
+  ],
+  [ROLES.SUPPORT_ADMIN]: [
+    PERMISSIONS.TICKET_READ_ANY,
+    PERMISSIONS.TICKET_RESPOND,
+    PERMISSIONS.TICKET_ASSIGN,
+    PERMISSIONS.TICKET_CLOSE,
+    PERMISSIONS.SUPPORT_AGENT_MANAGE,
+    PERMISSIONS.ORDER_READ_ANY,
+    PERMISSIONS.PROFILE_READ_OWN,
+    PERMISSIONS.PROFILE_UPDATE_OWN,
+  ],
+});
+
+// Which portal(s) a role is allowed to sign into. Enforced at login time.
+export const ROLE_PORTALS = Object.freeze({
+  [ROLES.SUPER_ADMIN]: ["admin"],
+  [ROLES.ADMIN]: ["admin"],
+  [ROLES.SELLER]: ["seller"],
+  [ROLES.DELIVERY_PARTNER]: ["delivery"],
+  [ROLES.CUSTOMER]: ["customer"],
+  [ROLES.SUPPORT_AGENT]: ["support"],
+  [ROLES.SUPPORT_ADMIN]: ["support"],
+});

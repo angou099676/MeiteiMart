@@ -1,0 +1,40 @@
+{
+  "name": "meiteimart",
+  "private": true,
+  "version": "1.0.0",
+  "description": "MeiteiMart - Quick-commerce grocery & essentials delivery platform monorepo",
+  "workspaces": [
+    "apps/admin-web",
+    "apps/customer-web",
+    "apps/delivery-web",
+    "apps/seller-web",
+    "apps/support-web",
+    "apps/customer-mobile",
+    "apps/delivery-mobile",
+    "apps/seller-mobile",
+    "services/api",
+    "packages/shared",
+    "packages/ui"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace=services/api",
+    "dev:admin": "npm run dev --workspace=apps/admin-web",
+    "dev:customer": "npm run dev --workspace=apps/customer-web",
+    "dev:delivery": "npm run dev --workspace=apps/delivery-web",
+    "dev:seller": "npm run dev --workspace=apps/seller-web",
+    "dev:support": "npm run dev --workspace=apps/support-web",
+    "dev:customer-mobile": "npm run start --workspace=apps/customer-mobile",
+    "dev:delivery-mobile": "npm run start --workspace=apps/delivery-mobile",
+    "dev:seller-mobile": "npm run start --workspace=apps/seller-mobile",
+    "build:admin": "npm run build --workspace=apps/admin-web",
+    "build:customer": "npm run build --workspace=apps/customer-web",
+    "build:delivery": "npm run build --workspace=apps/delivery-web",
+    "build:seller": "npm run build --workspace=apps/seller-web",
+    "build:support": "npm run build --workspace=apps/support-web",
+    "seed": "npm run seed --workspace=services/api"
+  },
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "license": "UNLICENSED"
+}

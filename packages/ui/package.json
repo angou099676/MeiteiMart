@@ -1,0 +1,8 @@
+{
+  "name": "@meiteimart/ui",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "tailwind-preset.js",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,47 @@
+import { useEffect, useState } from "react";
+import { View, Text, FlatList, StyleSheet } from "react-native";
+import { api } from "../lib/api.js";
+import { connectSocket } from "../lib/socket.js";
+import { useAuthStore } from "../store/authStore.js";
+
+export default function OrdersScreen() {
+  const [orders, setOrders] = useState([]);
+  const accessToken = useAuthStore((s) => s.accessToken);
+
+  useEffect(() => {
+    api.get("/orders").then((res) => setOrders(res.data.data.orders));
+  }, []);
+
+  useEffect(() => {
+    if (!accessToken) return;
+    const socket = connectSocket(accessToken);
+    orders.forEach((o) => socket.emit("order:join", o._id));
+    return () => socket.disconnect();
+  }, [accessToken, orders.length]);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>My Orders</Text>
+      <FlatList
+        data={orders}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => (
+          <View style={styles.card}>
+            <Text style={styles.orderNumber}>{item.orderNumber}</Text>
+            <Text style={styles.status}>{item.status}</Text>
+          </View>
+        )}
+        ListEmptyComponent={<Text style={styles.empty}>No orders yet.</Text>}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 16, backgroundColor: "#f9fafb" },
+  title: { fontSize: 20, fontWeight: "700", marginBottom: 16 },
+  card: { backgroundColor: "#fff", borderRadius: 12, padding: 14, marginBottom: 10, borderWidth: 1, borderColor: "#e5e7eb", flexDirection: "row", justifyContent: "space-between" },
+  orderNumber: { fontWeight: "600" },
+  status: { color: "#158a49", fontWeight: "600" },
+  empty: { color: "#6b7280", textAlign: "center", marginTop: 40 },
+});

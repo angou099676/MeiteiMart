@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "MeiteiMart Seller",
+    "slug": "meiteimart-seller",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "scheme": "meiteimart-seller",
+    "splash": { "backgroundColor": "#158a49" },
+    "assetBundlePatterns": ["**/*"],
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.meiteimart.seller" },
+    "android": {
+      "package": "com.meiteimart.seller",
+      "adaptiveIcon": { "backgroundColor": "#158a49" }
+    },
+    "extra": { "apiUrl": "http://localhost:8080" }
+  }
+}

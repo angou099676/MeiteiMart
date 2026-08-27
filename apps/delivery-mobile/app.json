@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "MeiteiMart Delivery",
+    "slug": "meiteimart-delivery",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "scheme": "meiteimart-delivery",
+    "splash": { "backgroundColor": "#158a49" },
+    "assetBundlePatterns": ["**/*"],
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.meiteimart.delivery" },
+    "android": {
+      "package": "com.meiteimart.delivery",
+      "adaptiveIcon": { "backgroundColor": "#158a49" },
+      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_BACKGROUND_LOCATION"]
+    },
+    "extra": { "apiUrl": "http://localhost:8080" }
+  }
+}

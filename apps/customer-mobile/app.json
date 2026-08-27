@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "MeiteiMart",
+    "slug": "meiteimart-customer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "scheme": "meiteimart-customer",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#158a49"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.meiteimart.customer" },
+    "android": {
+      "package": "com.meiteimart.customer",
+      "adaptiveIcon": { "backgroundColor": "#158a49" }
+    },
+    "extra": {
+      "apiUrl": "http://localhost:8080"
+    }
+  }
+}

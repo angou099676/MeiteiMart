@@ -1,0 +1,32 @@
+import { useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
+import { useAuthStore } from "./src/store/authStore.js";
+import LoginScreen from "./src/screens/LoginScreen.js";
+import DashboardScreen from "./src/screens/DashboardScreen.js";
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+  const { accessToken, hydrate, hydrated } = useAuthStore();
+
+  useEffect(() => {
+    hydrate();
+  }, []);
+
+  if (!hydrated) return null;
+
+  return (
+    <NavigationContainer>
+      <StatusBar style="dark" />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {accessToken ? (
+          <Stack.Screen name="Dashboard" component={DashboardScreen} />
+        ) : (
+          <Stack.Screen name="Login" component={LoginScreen} />
+        )}
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
