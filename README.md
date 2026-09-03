@@ -69,3 +69,4 @@ npm run dev:admin      # in another terminal
 
 Future add-on services (planned, not yet scaffolded): **Porter** (intercity door-to-door pickup/delivery), **FindHelper** (daily worker/helper booking), **RentTool** (tool/machine/furniture rental). These will be added as new apps/services in this same monorepo.
 # MeiteiMart
+# MeiteiMart
