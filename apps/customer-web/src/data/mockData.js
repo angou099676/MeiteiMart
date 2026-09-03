@@ -1,0 +1,175 @@
+import { CATEGORY_IMAGES } from "./categories.js";
+
+// Mock store data used as a fallback when the API has no approved stores yet,
+// so the storefront always looks alive. Swiggy/Zomato-style restaurant cards.
+export const MOCK_STORES = [
+  {
+    _id: "mock-store-1",
+    name: "Fresh Mart Daily",
+    description: "Daily essentials, groceries & fresh produce",
+    logoUrl: "https://images.pexels.com/photos/9705821/pexels-photo-9705821.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    address: { city: "Imphal", state: "Manipur", location: { coordinates: [93.94, 24.82] } },
+    rating: 4.3,
+    ratingCount: 1240,
+    distanceKm: 1.2,
+    etaMinutes: 18,
+    minOrderValue: 99,
+    avgPrepTimeMinutes: 12,
+    tags: ["Groceries", "Fruits & Veg", "Dairy"],
+    promo: "20% OFF up to ₹50",
+  },
+  {
+    _id: "mock-store-2",
+    name: "Green Basket Organics",
+    description: "100% organic fruits & vegetables, farm to door",
+    logoUrl: "https://images.pexels.com/photos/33214226/pexels-photo-33214226.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    address: { city: "Imphal", state: "Manipur", location: { coordinates: [93.95, 24.81] } },
+    rating: 4.6,
+    ratingCount: 856,
+    distanceKm: 2.4,
+    etaMinutes: 25,
+    minOrderValue: 149,
+    avgPrepTimeMinutes: 15,
+    tags: ["Organic", "Fresh Produce"],
+    promo: "Free delivery",
+  },
+  {
+    _id: "mock-store-3",
+    name: "QuickNeeds Pharmacy",
+    description: "Medicines, wellness & personal care delivered fast",
+    logoUrl: "https://images.pexels.com/photos/13779112/pexels-photo-13779112.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    address: { city: "Imphal", state: "Manipur", location: { coordinates: [93.93, 24.83] } },
+    rating: 4.5,
+    ratingCount: 432,
+    distanceKm: 0.8,
+    etaMinutes: 15,
+    minOrderValue: 49,
+    avgPrepTimeMinutes: 8,
+    tags: ["Pharmacy", "Wellness", "Personal Care"],
+    promo: "15% OFF on medicines",
+  },
+  {
+    _id: "mock-store-4",
+    name: "Snack Corner Express",
+    description: "Snacks, chips, chocolates & instant food",
+    logoUrl: "https://images.pexels.com/photos/31323236/pexels-photo-31323236.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    address: { city: "Imphal", state: "Manipur", location: { coordinates: [93.96, 24.82] } },
+    rating: 4.2,
+    ratingCount: 678,
+    distanceKm: 3.1,
+    etaMinutes: 28,
+    minOrderValue: 99,
+    avgPrepTimeMinutes: 10,
+    tags: ["Snacks", "Beverages", "Frozen"],
+    promo: "Buy 2 Get 1 Free",
+  },
+  {
+    _id: "mock-store-5",
+    name: "Home Comfort Store",
+    description: "Cleaning supplies, home essentials & pet care",
+    logoUrl: "https://images.pexels.com/photos/31526215/pexels-photo-31526215.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    address: { city: "Imphal", state: "Manipur", location: { coordinates: [93.92, 24.80] } },
+    rating: 4.4,
+    ratingCount: 312,
+    distanceKm: 1.8,
+    etaMinutes: 22,
+    minOrderValue: 129,
+    avgPrepTimeMinutes: 14,
+    tags: ["Home Care", "Pet Care"],
+    promo: "10% OFF",
+  },
+  {
+    _id: "mock-store-6",
+    name: "Tech Accessories Hub",
+    description: "Phone chargers, earphones, batteries & more",
+    logoUrl: "https://images.pexels.com/photos/947407/pexels-photo-947407.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+    address: { city: "Imphal", state: "Manipur", location: { coordinates: [93.94, 24.84] } },
+    rating: 4.1,
+    ratingCount: 198,
+    distanceKm: 4.2,
+    etaMinutes: 35,
+    minOrderValue: 199,
+    avgPrepTimeMinutes: 20,
+    tags: ["Electronics", "Accessories"],
+    promo: "Free delivery over ₹299",
+  },
+];
+
+const mockProductImage = (slug) => CATEGORY_IMAGES[slug] || "https://images.pexels.com/photos/220911/pexels-photo-220911.jpeg?auto=compress&cs=tinysrgb&h=650&w=940";
+
+export const MOCK_PRODUCTS = [
+  // Fresh Mart Daily
+  { _id: "mp-1", store: "mock-store-1", category: "fruits-vegetables", name: "Fresh Bananas (1 dozen)", slug: "bananas", description: "Ripe yellow bananas, perfect for snacking", unit: "12 pcs", mrp: 60, price: 49, stock: 50, isApproved: true, isActive: true, images: [mockProductImage("fruits-vegetables")] },
+  { _id: "mp-2", store: "mock-store-1", category: "fruits-vegetables", name: "Tomatoes", slug: "tomatoes", description: "Farm-fresh red tomatoes", unit: "500 g", mrp: 40, price: 32, stock: 80, isApproved: true, isActive: true, images: [mockProductImage("fruits-vegetables")] },
+  { _id: "mp-3", store: "mock-store-1", category: "dairy-bread-eggs", name: "Amul Milk", slug: "amul-milk", description: "Fresh full cream milk, 1 litre", unit: "1 L", mrp: 68, price: 65, stock: 40, isApproved: true, isActive: true, images: [mockProductImage("dairy-bread-eggs")] },
+  { _id: "mp-4", store: "mock-store-1", category: "dairy-bread-eggs", name: "Brown Bread", slug: "brown-bread", description: "Whole wheat brown bread loaf", unit: "400 g", mrp: 45, price: 40, stock: 30, isApproved: true, isActive: true, images: [mockProductImage("dairy-bread-eggs")] },
+  { _id: "mp-5", store: "mock-store-1", category: "atta-rice-oil-dals", name: "Aashirvaad Atta", slug: "aashirvaad-atta", description: "Premium whole wheat flour", unit: "5 kg", mrp: 280, price: 245, stock: 20, isApproved: true, isActive: true, images: [mockProductImage("atta-rice-oil-dals")] },
+  { _id: "mp-6", store: "mock-store-1", category: "masala-spices", name: "Tata Salt", slug: "tata-salt", description: "Iodised table salt", unit: "1 kg", mrp: 28, price: 25, stock: 100, isApproved: true, isActive: true, images: [mockProductImage("masala-spices")] },
+  { _id: "mp-7", store: "mock-store-1", category: "snacks-munchies", name: "Lays Chips", slug: "lays-chips", description: "Classic salted potato chips", unit: "52 g", mrp: 20, price: 18, stock: 60, isApproved: true, isActive: true, images: [mockProductImage("snacks-munchies")] },
+  { _id: "mp-8", store: "mock-store-1", category: "tea-coffee-beverages", name: "Tata Tea Gold", slug: "tata-tea-gold", description: "Premium tea blend, 500g", unit: "500 g", mrp: 270, price: 240, stock: 15, isApproved: true, isActive: true, images: [mockProductImage("tea-coffee-beverages")] },
+
+  // Green Basket Organics
+  { _id: "mp-9", store: "mock-store-2", category: "fruits-vegetables", name: "Organic Apples", slug: "organic-apples", description: "Hand-picked organic red apples", unit: "1 kg", mrp: 180, price: 160, stock: 25, isApproved: true, isActive: true, images: [mockProductImage("fruits-vegetables")] },
+  { _id: "mp-10", store: "mock-store-2", category: "fruits-vegetables", name: "Organic Spinach", slug: "organic-spinach", description: "Fresh organic spinach leaves", unit: "250 g", mrp: 50, price: 40, stock: 30, isApproved: true, isActive: true, images: [mockProductImage("fruits-vegetables")] },
+  { _id: "mp-11", store: "mock-store-2", category: "fruits-vegetables", name: "Organic Carrots", slug: "organic-carrots", description: "Sweet organic carrots", unit: "500 g", mrp: 60, price: 50, stock: 35, isApproved: true, isActive: true, images: [mockProductImage("fruits-vegetables")] },
+
+  // QuickNeeds Pharmacy
+  { _id: "mp-12", store: "mock-store-3", category: "pharmacy-wellness", name: "Paracetamol 500mg", slug: "paracetamol", description: "For fever & pain relief, 15 tablets", unit: "15 tabs", mrp: 35, price: 30, stock: 100, isApproved: true, isActive: true, images: [mockProductImage("pharmacy-wellness")] },
+  { _id: "mp-13", store: "mock-store-3", category: "personal-care", name: "Dove Shampoo", slug: "dove-shampoo", description: "Daily hair shampoo, 340ml", unit: "340 ml", mrp: 350, price: 299, stock: 20, isApproved: true, isActive: true, images: [mockProductImage("personal-care")] },
+  { _id: "mp-14", store: "mock-store-3", category: "pharmacy-wellness", name: "Vitamin C Tablets", slug: "vitamin-c", description: "Immunity booster, 30 tablets", unit: "30 tabs", mrp: 250, price: 199, stock: 40, isApproved: true, isActive: true, images: [mockProductImage("pharmacy-wellness")] },
+
+  // Snack Corner Express
+  { _id: "mp-15", store: "mock-store-4", category: "snacks-munchies", name: "Kurkure Masala", slug: "kurkure-masala", description: "Crunchy corn puffs, masala flavour", unit: "90 g", mrp: 20, price: 17, stock: 80, isApproved: true, isActive: true, images: [mockProductImage("snacks-munchies")] },
+  { _id: "mp-16", store: "mock-store-4", category: "snacks-munchies", name: "Cadbury Dairy Milk", slug: "dairy-milk", description: "Milk chocolate bar", unit: "55 g", mrp: 45, price: 40, stock: 50, isApproved: true, isActive: true, images: [mockProductImage("snacks-munchies")] },
+  { _id: "mp-17", store: "mock-store-4", category: "instant-frozen-food", name: "Maggi Noodles", slug: "maggi-noodles", description: "Instant 2-minute noodles, 4 pack", unit: "4 x 70 g", mrp: 80, price: 72, stock: 60, isApproved: true, isActive: true, images: [mockProductImage("instant-frozen-food")] },
+  { _id: "mp-18", store: "mock-store-4", category: "tea-coffee-beverages", name: "Coca Cola", slug: "coca-cola", description: "Refreshing soft drink, 750ml", unit: "750 ml", mrp: 42, price: 38, stock: 70, isApproved: true, isActive: true, images: [mockProductImage("tea-coffee-beverages")] },
+
+  // Home Comfort Store
+  { _id: "mp-19", store: "mock-store-5", category: "home-cleaning", name: "Surf Excel Detergent", slug: "surf-excel", description: "Front load washing powder, 2kg", unit: "2 kg", mrp: 320, price: 285, stock: 25, isApproved: true, isActive: true, images: [mockProductImage("home-cleaning")] },
+  { _id: "mp-20", store: "mock-store-5", category: "home-cleaning", name: "Vim Dishwash", slug: "vim-dishwash", description: "Lemon dishwash liquid, 750ml", unit: "750 ml", mrp: 175, price: 155, stock: 30, isApproved: true, isActive: true, images: [mockProductImage("home-cleaning")] },
+  { _id: "mp-21", store: "mock-store-5", category: "pet-care", name: "Pedigree Dog Food", slug: "pedigree", description: "Adult dog food, chicken flavour, 3kg", unit: "3 kg", mrp: 850, price: 799, stock: 15, isApproved: true, isActive: true, images: [mockProductImage("pet-care")] },
+
+  // Tech Accessories Hub
+  { _id: "mp-22", store: "mock-store-6", category: "electronics-essentials", name: "USB-C Fast Charger", slug: "usb-c-charger", description: "20W USB-C wall charger", unit: "1 pc", mrp: 599, price: 449, stock: 20, isApproved: true, isActive: true, images: [mockProductImage("electronics-essentials")] },
+  { _id: "mp-23", store: "mock-store-6", category: "electronics-essentials", name: "Wired Earphones", slug: "wired-earphones", description: "3.5mm in-ear earphones with mic", unit: "1 pc", mrp: 299, price: 199, stock: 35, isApproved: true, isActive: true, images: [mockProductImage("electronics-essentials")] },
+  { _id: "mp-24", store: "mock-store-6", category: "electronics-essentials", name: "AA Batteries (4 pack)", slug: "aa-batteries", description: "Alkaline AA batteries, pack of 4", unit: "4 pcs", mrp: 150, price: 120, stock: 50, isApproved: true, isActive: true, images: [mockProductImage("electronics-essentials")] },
+];
+
+export const MOCK_ORDERS = [
+  {
+    _id: "mock-order-1",
+    orderNumber: "MM-X8K2F9",
+    store: { _id: "mock-store-1", name: "Fresh Mart Daily", address: { city: "Imphal", location: { coordinates: [93.94, 24.82] } } },
+    status: "DELIVERED",
+    grandTotal: 156,
+    itemsTotal: 141,
+    deliveryFee: 15,
+    items: [
+      { product: "mp-1", name: "Fresh Bananas (1 dozen)", unit: "12 pcs", price: 49, quantity: 1 },
+      { product: "mp-3", name: "Amul Milk", unit: "1 L", price: 65, quantity: 1 },
+      { product: "mp-7", name: "Lays Chips", unit: "52 g", price: 18, quantity: 1 },
+    ],
+    shippingAddress: { line1: "Main Road, Near City Park", city: "Imphal", state: "Manipur", postalCode: "795001", location: { coordinates: [93.94, 24.82] } },
+    paymentMethod: "COD",
+    createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+    rating: { storeRating: 4, deliveryRating: 5, comment: "Quick delivery!", ratedAt: new Date(Date.now() - 86400000).toISOString() },
+  },
+  {
+    _id: "mock-order-2",
+    orderNumber: "MM-Y3M7K1",
+    store: { _id: "mock-store-4", name: "Snack Corner Express", address: { city: "Imphal", location: { coordinates: [93.96, 24.82] } } },
+    status: "OUT_FOR_DELIVERY",
+    grandTotal: 127,
+    itemsTotal: 112,
+    deliveryFee: 15,
+    items: [
+      { product: "mp-15", name: "Kurkure Masala", unit: "90 g", price: 17, quantity: 2 },
+      { product: "mp-16", name: "Cadbury Dairy Milk", unit: "55 g", price: 40, quantity: 1 },
+      { product: "mp-17", name: "Maggi Noodles", unit: "4 x 70 g", price: 72, quantity: 1 },
+    ],
+    shippingAddress: { line1: "Main Road, Near City Park", city: "Imphal", state: "Manipur", postalCode: "795001", location: { coordinates: [93.94, 24.82] } },
+    paymentMethod: "COD",
+    createdAt: new Date(Date.now() - 3600000).toISOString(),
+    rating: null,
+  },
+];

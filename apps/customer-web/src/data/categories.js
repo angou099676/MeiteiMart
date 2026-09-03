@@ -1,0 +1,31 @@
+export const CATEGORY_IMAGES = {
+  "fruits-vegetables": "https://images.pexels.com/photos/10550259/pexels-photo-10550259.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "dairy-bread-eggs": "https://images.pexels.com/photos/5591669/pexels-photo-5591669.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "atta-rice-oil-dals": "https://images.pexels.com/photos/16620746/pexels-photo-16620746.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "masala-spices": "https://images.pexels.com/photos/32038446/pexels-photo-32038446.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "tea-coffee-beverages": "https://images.pexels.com/photos/2168346/pexels-photo-2168346.png?auto=compress&cs=tinysrgb&h=650&w=940",
+  "snacks-munchies": "https://images.pexels.com/photos/31323236/pexels-photo-31323236.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "instant-frozen-food": "https://images.pexels.com/photos/4541393/pexels-photo-4541393.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "personal-care": "https://images.pexels.com/photos/19833253/pexels-photo-19833253.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "baby-care": "https://images.pexels.com/photos/21268301/pexels-photo-21268301.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "home-cleaning": "https://images.pexels.com/photos/31526215/pexels-photo-31526215.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "pet-care": "https://images.pexels.com/photos/13581209/pexels-photo-13581209.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "pharmacy-wellness": "https://images.pexels.com/photos/13779112/pexels-photo-13779112.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+  "electronics-essentials": "https://images.pexels.com/photos/947407/pexels-photo-947407.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+};
+
+export const CATEGORY_META = [
+  { slug: "fruits-vegetables", name: "Fruits & Vegetables", emoji: "🥬" },
+  { slug: "dairy-bread-eggs", name: "Dairy, Bread & Eggs", emoji: "🥚" },
+  { slug: "atta-rice-oil-dals", name: "Atta, Rice & Dals", emoji: "🌾" },
+  { slug: "masala-spices", name: "Masala & Spices", emoji: "🌶️" },
+  { slug: "tea-coffee-beverages", name: "Tea & Coffee", emoji: "☕" },
+  { slug: "snacks-munchies", name: "Snacks & Munchies", emoji: "🍫" },
+  { slug: "instant-frozen-food", name: "Instant & Frozen", emoji: "🍜" },
+  { slug: "personal-care", name: "Personal Care", emoji: "🧴" },
+  { slug: "baby-care", name: "Baby Care", emoji: "🍼" },
+  { slug: "home-cleaning", name: "Home & Cleaning", emoji: "🧹" },
+  { slug: "pet-care", name: "Pet Care", emoji: "🐾" },
+  { slug: "pharmacy-wellness", name: "Pharmacy & Wellness", emoji: "💊" },
+  { slug: "electronics-essentials", name: "Electronics", emoji: "🔌" },
+];
